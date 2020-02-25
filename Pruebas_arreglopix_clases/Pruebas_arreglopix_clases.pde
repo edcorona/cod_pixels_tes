@@ -1,13 +1,12 @@
-Individuo [] individuos= new Individuo[90000];
-color R=color(0,0,255);
- color G=color(255,255,255);
-color B=color(255,255,255);
+Individuo [] individuos= new Individuo[65536];
+PImage imagen;
 void setup()
 {
-size(300,300);
+size(256,256);
+imagen= loadImage("p1.png");
 for(int i=0;i<individuos.length;i++)
   {
-    individuos[i]= new Individuo(R,G,B);
+    individuos[i]= new Individuo(int(random(0,255)),int(random(0,255)), int(random(0,255)));
   }
 }
 void draw()
@@ -24,9 +23,11 @@ for (int i = 0; i < 30000; i++) {
 }
 */
 
-for (int i = 0; i < individuos.length/2 ; i++) {
-  pixels[i] = amarillo; 
+for (int i = 0; i < individuos.length ; i++) {
+  individuos[i].getcolor();
+  imagen.pixels[i] = color(individuos[i].r, individuos[i].g, individuos[i].b ); 
 }
 
-updatePixels();
+imagen.updatePixels();
+image(imagen,0,0);
 }
